@@ -100,6 +100,7 @@ set statusline+=%q      "quickfix / locationlist
 "set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
 set statusline+=\ %{StlShowFunc()} "function name (uses the current-func-info plugin)
 set statusline+=%=      "left/right separator
+set statusline+=%{fugitive#statusline()} " Current git branch
 set statusline+=%c:%v,  "cursor column:virtual column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
