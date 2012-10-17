@@ -76,7 +76,6 @@ if has("gui_running")
 	endif
 	colorscheme delek2
 else
-	set laststatus=2
 	" Best mouse tracking
 	set ttymouse=xterm2
 	" Use the mouse in (a)ll modes
@@ -87,6 +86,9 @@ else
 		colorscheme delek
 	endif
 endif
+
+" Always show a statusbar
+set laststatus=2
 
 " Statusline
 set statusline=%t       "tail of the filename
