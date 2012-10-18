@@ -145,18 +145,16 @@ let g:ccaseNoComment = 1
 cmap w!! %!sudo tee > /dev/null %
 
 " Pretty Print
-map <f9> :%!`cleartool pwv -root`/vobs/CMS_INTEGRATION/msa/build/useful_stuff/indent-msl.sh<CR>
+map <f9> :%!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs
+
 " Pretty print the visual highlight
-map <leader><f9> :!`cleartool pwv -root`/vobs/CMS_INTEGRATION/msa/build/useful_stuff/indent-msl.sh<CR>
+map <leader><f9> :!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs
 
 " Lookup the current highlight 
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
 " Disable wrapping
 :map <leader>w :set nowrap! <CR>
-
-" Load cscope from the current view
-map <f8> :cscope kill -1<CR>:let $CSCOPE_DB= system('cleartool pwv -root')[:-2] . "/vobs/CMS_INTEGRATION/msa/build/cscope.out"<CR>:cscope add $CSCOPE_DB<CR>:let $CSCOPE_DB= system('cleartool pwv -root')[:-2] . "/vobs/CMS_INTEGRATION/msa/build/cscope.py.out"<CR>:cscope add $CSCOPE_DB<CR>
 
 " Quicklist scrolling
 map <leader><PageDown> :cnext<CR>
@@ -248,7 +246,6 @@ endif
 set errorformat^=%-G%.%#library.mk.%#
 set errorformat^=%-G%.%#libraries.mk%.%#
 set errorformat^=%-G%.%#platform.mk%.%#
-"set makeprg=cd\ `cleartool\ pwv\ -root`/vobs/CMS_INTEGRATION/msa/build\ ;\ ./makecomponent.sh\ --extra\ \"--cfg_avds=msl_avds_upc.cfg\ --cfg_stream=msl_streams_CI_BSKYB_HD_PVR.cfg\"
 
 " Errorformat for KW files [modified by awk -F";" 'BEGIN {OFS=";";} {print $5,$2,$3,$7 " " $18 " (" $8 ") " $12}' ]
 set errorformat+=%IStyle;%f;%l;%c;%m,%WWarning;%f;%l;%c;%m,%EError;%f;%l;%c;%m,%ECritical;%f;%l;%c;%m,%ESevere;%f;%l;%c;%m,%IInvestigate;%f;%l%c;%m
