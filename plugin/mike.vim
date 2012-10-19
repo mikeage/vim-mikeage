@@ -100,9 +100,9 @@ set statusline+=%r      "read only flag
 set statusline+=%y      "filetype
 set statusline+=%q      "quickfix / locationlist
 "set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
-set statusline+=\ %{StlShowFunc()} "function name (uses the current-func-info plugin)
+set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
 set statusline+=%=      "left/right separator
-set statusline+=%{fugitive#statusline()} " Current git branch
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
 set statusline+=%c:%v,  "cursor column:virtual column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
@@ -145,10 +145,10 @@ let g:ccaseNoComment = 1
 cmap w!! %!sudo tee > /dev/null %
 
 " Pretty Print
-map <f9> :%!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs
+map <f9> :%!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs<CR>
 
 " Pretty print the visual highlight
-map <leader><f9> :!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs
+map <leader><f9> :!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs<CR>
 
 " Lookup the current highlight 
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
@@ -236,11 +236,6 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=60 
 " Load NERDTree if no files were specified
 " autocmd vimenter * if !argc() | NERDTree | endif
-
-" GDB for MOR
-if !has("win32")
-" set gdbprg=/view/mmiller_ms_comp/vobs/FUSIONOS/BLD_PACE_BCM_MIPS4K_LNUX_VIASAT_01/platform_cfg/linux/compiler/mips4k_gcc_x86_linux_01/bin/mipsel-linux-uclibc-gdb
-endif
 
 " Ignore Fusion build warnings
 set errorformat^=%-G%.%#library.mk.%#
