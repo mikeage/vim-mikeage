@@ -255,7 +255,7 @@ let g:syntastic_python_checker_args = "--max-line-length=131"
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 " Undo tree browser
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :GundoToggle<CR>
 
 " Per project local files are named .vimrc.local, not _vimrc_local
 let g:local_vimrc = ".vimrc.local"
