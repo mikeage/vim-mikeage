@@ -102,7 +102,8 @@ set statusline+=%q      "quickfix / locationlist
 "set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
 set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
 set statusline+=%=      "left/right separator
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
+set statusline+=\ %{exists('g:loaded_Timestamp')?TimestampGetDelta():''} "Delta 
+set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
 set statusline+=%c:%v,  "cursor column:virtual column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
