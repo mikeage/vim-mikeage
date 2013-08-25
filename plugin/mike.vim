@@ -87,6 +87,12 @@ else
 	endif
 endif
 
+" I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
+if &t_Co == 256
+	let g:solarized_termcolors=256
+endif
+let g:solarized_contrast = "high"
+
 " Always show a statusbar
 set laststatus=2
 
