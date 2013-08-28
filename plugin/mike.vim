@@ -74,7 +74,7 @@ if has("gui_running")
 		" Fullscreen in windows
 		au GUIEnter * simalt ~x 
 	endif
-	colorscheme delek2
+	colorscheme solarized
 else
 	" Best mouse tracking
 	set ttymouse=xterm2
@@ -88,7 +88,7 @@ else
 endif
 
 " I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
-if &t_Co == 256
+if ((! has("gui_win32")) && &t_Co == 256)
 	let g:solarized_termcolors=256
 endif
 let g:solarized_contrast = "high"
