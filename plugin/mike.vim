@@ -63,6 +63,15 @@ if has("autocmd")
 else
   set autoindent		" always set autoindenting on
 endif " has("autocmd")
+"
+" I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
+if ((! has("gui_win32")) && &t_Co == 256)
+	if ($USER != "mmiller")
+		let g:solarized_termcolors=256
+	endif
+endif
+let g:solarized_contrast = "high"
+
 
 " Display options
 " Options that depend on the UI (win32, gtk, console)
@@ -81,18 +90,15 @@ else
 	" Use the mouse in (a)ll modes
 	set mouse=a
 	if &t_Co == 256
-		colorscheme delek2
+		if ($USER == "mmiller")
+			colorscheme solarized
+		else
+			colorscheme delek2
+		endif
 	else
 		colorscheme delek
 	endif
 endif
-
-" I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
-if ((! has("gui_win32")) && &t_Co == 256)
-	let g:solarized_termcolors=256
-endif
-let g:solarized_contrast = "high"
-
 " Always show a statusbar
 set laststatus=2
 
