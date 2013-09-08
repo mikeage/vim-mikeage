@@ -283,6 +283,7 @@ let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_working_path_mode='' 
 let g:ctrlp_map = '<leader>p'
+let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 
 " Persistent undo
 set undofile
