@@ -294,3 +294,5 @@ let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 " Persistent undo
 set undofile
 
+" Only sync from master to slave. It seems the other way isn't working right now
+let g:LogViewer_SyncAll = 0
