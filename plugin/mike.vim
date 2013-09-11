@@ -92,6 +92,7 @@ else
 	if &t_Co == 256
 		if ($USER == "mmiller")
 			colorscheme solarized
+			set background=dark
 		else
 			colorscheme delek2
 		endif
