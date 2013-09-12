@@ -251,6 +251,10 @@ let g:NERDTreeWinSize=60
 " Load NERDTree if no files were specified
 " autocmd vimenter * if !argc() | NERDTree | endif
 
+" Tagbar instead of taglist, which is horribly out of date
+:imap <F8> :TagbarToggle<CR>
+:map <F8> :TagbarToggle<CR>
+
 " Ignore Fusion build warnings
 set errorformat^=%-G%.%#library.mk.%#
 set errorformat^=%-G%.%#libraries.mk%.%#
