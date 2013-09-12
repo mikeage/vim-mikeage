@@ -135,7 +135,7 @@ set noexpandtab
 " Easier searching using 'gf'
 set path+=./inc,../inc,../../inc,../../../inc,../../../../inc,./include,../include,../../include,../../../include,../../../../include,
 set browsedir=buffer
-set tag+=../tags,../../tags,../../../tags,../../../../tags
+set tag+=./tags;
 
 " Mimic bash- tabs expand as far as they can go, and then show a list of the options
 set wildmode=longest,list
@@ -297,3 +297,15 @@ set undofile
 
 " Only sync from master to slave. It seems the other way isn't working right now
 let g:LogViewer_SyncAll = 0
+
+" From http://vim.wikia.com/wiki/Autoloading_Cscope_Database; search parent directories for cscope DB
+function! LoadCscope()
+	let db = findfile("cscope.out", ".;")
+	if (!empty(db))
+		let path = strpart(db, 0, match(db, "/cscope.out$"))
+		set nocscopeverbose " suppress 'duplicate connection' error
+		exe "cs add " . db . " " . path
+		set cscopeverbose
+	endif
+endfunction
+au BufEnter /* call LoadCscope()
