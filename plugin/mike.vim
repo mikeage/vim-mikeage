@@ -66,7 +66,7 @@ endif " has("autocmd")
 "
 " I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
 if ((! has("gui_win32")) && &t_Co == 256)
-	if ($USER != "mmiller")
+	if (!exists("$SOLARIZED"))
 		let g:solarized_termcolors=256
 	endif
 endif
@@ -90,7 +90,7 @@ else
 	" Use the mouse in (a)ll modes
 	set mouse=a
 	if &t_Co == 256
-		if ($USER == "mmiller")
+		if (exists("$SOLARIZED"))
 			colorscheme solarized
 			set background=dark
 		else
