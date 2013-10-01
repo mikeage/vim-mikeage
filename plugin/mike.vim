@@ -178,8 +178,13 @@ map <leader><PageUp> :cprevious<CR>
 set grepprg=grep\ -nH
 
 " Buffer tabbing
-map <leader><Tab> :confirm bnext<CR>
-map <leader><leader><Tab> :confirm bprevious<CR>
+"map <leader><Tab> :confirm bnext<CR>
+"map <leader><leader><Tab> :confirm bprevious<CR>
+" Use minibufexpl's functions instead of bnext. This way we won't select "real" buffers in special windows
+map <leader><Tab> :confirm MBEbn<CR>
+map <leader><leader><Tab> :confirm MBEbp<CR>
+" Wrap around (this is the default for bnext, but not for MBEbn)
+let g:miniBufExplCycleArround=1
 
 behave mswin
 if has("win32")
