@@ -263,7 +263,7 @@ let g:NERDTreeWinSize=60
 :map <F8> :TagbarToggle<CR>
 " Open on the left side (like source insight)
 let g:tagbar_left = 1
-" Save some screen 
+" Save some screen
 let g:tagbar_compact = 1
 
 " Ignore Fusion build warnings
