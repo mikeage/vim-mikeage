@@ -114,6 +114,8 @@ set statusline+=%y      "filetype
 set statusline+=%q      "quickfix / locationlist
 "set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
 set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
+"Don't use this, since it shows the previous function if we're between functions. StlShowFunc gets it right.
+"set statusline+=\ %{tagbar#currenttag('[%s]\ ','')}
 set statusline+=%=      "left/right separator
 set statusline+=\ %{exists('g:loaded_Timestamp')?TimestampGetDelta():''} "Delta 
 set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
@@ -259,6 +261,10 @@ let g:NERDTreeWinSize=60
 " Tagbar instead of taglist, which is horribly out of date
 :imap <F8> :TagbarToggle<CR>
 :map <F8> :TagbarToggle<CR>
+" Open on the left side (like source insight)
+let g:tagbar_left = 1
+" Save some screen 
+let g:tagbar_compact = 1
 
 " Ignore Fusion build warnings
 set errorformat^=%-G%.%#library.mk.%#
