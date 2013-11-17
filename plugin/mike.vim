@@ -313,6 +313,9 @@ set undofile
 " Only sync from master to slave. It seems the other way isn't working right now
 let g:LogViewer_SyncAll = 0
 
+" Gitgutter is a bit slow sometimes
+let g:gitgutter_enabled = 0 
+
 " From http://vim.wikia.com/wiki/Autoloading_Cscope_Database; search parent directories for cscope DB
 function! LoadCscope()
 	let db = findfile("cscope.out", ".;")
