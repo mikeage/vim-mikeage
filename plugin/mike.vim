@@ -84,6 +84,7 @@ if has("gui_running")
 		au GUIEnter * simalt ~x 
 	endif
 	colorscheme solarized
+	set background=dark
 else
 	" Best mouse tracking
 	set ttymouse=xterm2
