@@ -331,4 +331,5 @@ au BufEnter /* call LoadCscope()
 
 " Ignore line length in python files
 let g:syntastic_python_pylint_args="--disable C0301"
+let g:syntastic_python_flake8_args="--max-line-length=999"
 
