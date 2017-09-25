@@ -312,7 +312,7 @@ set undofile
 let g:LogViewer_SyncAll = 0
 
 " Gitgutter is a bit slow sometimes
-let g:gitgutter_enabled = 0
+"let g:gitgutter_enabled = 0
 
 " From http://vim.wikia.com/wiki/Autoloading_Cscope_Database; search parent directories for cscope DB
 function! LoadCscope()
