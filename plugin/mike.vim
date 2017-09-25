@@ -278,9 +278,6 @@ set errorformat+=%IStyle;%f;%l;%c;%m,%WWarning;%f;%l;%c;%m,%EError;%f;%l;%c;%m,%
 " Errorformat for MSL Python Unit Tests; ignore all lines starting with \.*NDS
 set errorformat^=%-G.%#NDS%.%#
 
-" Allow longer lines than the default 79 in python
-let g:syntastic_python_checker_args = "--max-line-length=131"
-
 " Ignore the special marks; only show the user defined local (a-z) and global (A-Z) marks
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -330,8 +327,6 @@ endfunction
 au BufEnter /* call LoadCscope()
 
 " Ignore line length in python files
-let g:syntastic_python_pylint_args="--disable C0301"
-let g:syntastic_python_flake8_args="--max-line-length=999"
 let g:ale_python_pylint_options= "--disable C0301"
 let g:ale_python_flake8_args = "--max-line-length=999"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
