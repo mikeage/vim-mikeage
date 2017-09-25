@@ -18,8 +18,8 @@ set incsearch
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+    syntax on
+    set hlsearch
 endif
 
 " Automatically reload changes on disk (assuming there were no changes made in the buffer)
@@ -35,40 +35,40 @@ set showcmd
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        " Also don't do it when the mark is in the first line, that is the default
+        " position when opening a file.
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
 
-  augroup END
+    augroup END
 
 else
-  set autoindent		" always set autoindenting on
+    set autoindent " always set autoindenting on
 endif " has("autocmd")
 "
 " I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
 if ((! has("gui_win32")) && &t_Co == 256)
-	if (!exists("$SOLARIZED"))
-		let g:solarized_termcolors=256
-	endif
+    if (!exists("$SOLARIZED"))
+        let g:solarized_termcolors=256
+    endif
 endif
 let g:solarized_contrast = "high"
 
@@ -76,53 +76,53 @@ let g:solarized_contrast = "high"
 " Display options
 " Options that depend on the UI (win32, gtk, console)
 if has("gui_running")
-	if has("gui_gtk2")
-		set guifont=Lucida\ Typewriter\ 11
-	elseif has("gui_win32")
-		set guifont=Consolas:h9
-		" Fullscreen in windows
-		au GUIEnter * simalt ~x 
-	endif
-	colorscheme solarized
-	set background=dark
+    if has("gui_gtk2")
+        set guifont=Lucida\ Typewriter\ 11
+    elseif has("gui_win32")
+        set guifont=Consolas:h9
+        " Fullscreen in windows
+        au GUIEnter * simalt ~x
+    endif
+    colorscheme solarized
+    set background=dark
 else
-	" Best mouse tracking
-	set ttymouse=xterm2
-	" Use the mouse in (a)ll modes
-	set mouse=a
-	if &t_Co == 256
-		if (exists("$SOLARIZED"))
-			colorscheme solarized
-			set background=dark
-		else
-			colorscheme delek2
-		endif
-	else
-		colorscheme delek
-	endif
+    " Best mouse tracking
+    set ttymouse=xterm2
+    " Use the mouse in (a)ll modes
+    set mouse=a
+    if &t_Co == 256
+        if (exists("$SOLARIZED"))
+            colorscheme solarized
+            set background=dark
+        else
+            colorscheme delek2
+        endif
+    else
+        colorscheme delek
+    endif
 endif
 " Always show a statusbar
 set laststatus=2
 
 " Statusline
-set statusline=%t       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%q      "quickfix / locationlist
-"set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
-set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
-"Don't use this, since it shows the previous function if we're between functions. StlShowFunc gets it right.
-"set statusline+=\ %{tagbar#currenttag('[%s]\ ','')}
-set statusline+=%=      "left/right separator
-set statusline+=\ %{exists('g:loaded_Timestamp')?TimestampGetDelta():''} "Delta 
-set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
-set statusline+=%c:%v,  "cursor column:virtual column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+"set statusline=%t       "tail of the filename
+"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+"set statusline+=%{&ff}] "file format
+"set statusline+=%h      "help file flag
+"set statusline+=%m      "modified flag
+"set statusline+=%r      "read only flag
+"set statusline+=%y      "filetype
+"set statusline+=%q      "quickfix / locationlist
+""set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
+"set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
+""Don't use this, since it shows the previous function if we're between functions. StlShowFunc gets it right.
+""set statusline+=\ %{tagbar#currenttag('[%s]\ ','')}
+"set statusline+=%=      "left/right separator
+"set statusline+=\ %{exists('g:loaded_Timestamp')?TimestampGetDelta():''} "Delta
+"set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
+"set statusline+=%c:%v,  "cursor column:virtual column
+"set statusline+=%l/%L   "cursor line/total lines
+"set statusline+=\ %P    "percent through file
 
 " Don't overwrite our statusline with StlShowFunc's
 let stlshowfunc_stlnofunc=&statusline
@@ -167,7 +167,7 @@ map <f9> :%!indent --blank-before-sizeof --blank-lines-after-commas --blank-line
 " Pretty print the visual highlight
 map <leader><f9> :!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs<CR>
 
-" Lookup the current highlight 
+" Lookup the current highlight
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
 " Disable wrapping
@@ -191,44 +191,44 @@ let g:miniBufExplCycleArround=1
 
 behave mswin
 if has("win32")
-	source $VIMRUNTIME/mswin.vim
+    source $VIMRUNTIME/mswin.vim
 else
-	" Just take a few things that we know we want...
-	set backspace=indent,eol,start whichwrap+=<,>,[,]
-	" Windows (not xterm) handling
-	behave mswin
+    " Just take a few things that we know we want...
+    set backspace=indent,eol,start whichwrap+=<,>,[,]
+    " Windows (not xterm) handling
+    behave mswin
 endif
 
 " <leader>q toggles the quickfix window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    botright copen 10
-    let g:qfix_win = bufnr("$")
-  endif
+    if exists("g:qfix_win") && a:forced == 0
+        cclose
+        unlet g:qfix_win
+    else
+        botright copen 10
+        let g:qfix_win = bufnr("$")
+    endif
 endfunction
 nmap <silent><leader>q :QFix<CR>
 
 " Convert all sorts of fancy prints to basic ASCII. Used for e-book conversions
 function! ToAscii()
-	normal mZ
-	%s///ge
-	%s/\n\n\+/\r/ge
-	%s/\t/ /ge
-	%s/  \+/ /ge
-	%s/[“”]/"/ge
-	%s/[‘’]/'/ge
-	%s/ç/c/ge
-	%s/[éë]/e/ge
-	%s/ü/u/ge
-	%s/[äâ]/a/ge
-	%s/[óö]/o/ge
-	%s/©/(c)/ge
-	%s/—/-/ge
-	normal `Z
+    normal mZ
+    %s///ge
+    %s/\n\n\+/\r/ge
+    %s/\t/ /ge
+    %s/  \+/ /ge
+    %s/[“”]/"/ge
+    %s/[‘’]/'/ge
+    %s/ç/c/ge
+    %s/[éë]/e/ge
+    %s/ü/u/ge
+    %s/[äâ]/a/ge
+    %s/[óö]/o/ge
+    %s/©/(c)/ge
+    %s/—/-/ge
+    normal `Z
 endfunction
 
 
@@ -255,7 +255,7 @@ set backupcopy=yes
 " Don't use the fancy unicode arrows
 let g:NERDTreeDirArrows=0
 " Default size is 60 characters instead of 31
-let g:NERDTreeWinSize=60 
+let g:NERDTreeWinSize=60
 " Load NERDTree if no files were specified
 " autocmd vimenter * if !argc() | NERDTree | endif
 
@@ -301,7 +301,7 @@ let g:ctrlp_use_caching=1
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_working_path_mode='' 
+let g:ctrlp_working_path_mode=''
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 
@@ -312,17 +312,17 @@ set undofile
 let g:LogViewer_SyncAll = 0
 
 " Gitgutter is a bit slow sometimes
-let g:gitgutter_enabled = 0 
+let g:gitgutter_enabled = 0
 
 " From http://vim.wikia.com/wiki/Autoloading_Cscope_Database; search parent directories for cscope DB
 function! LoadCscope()
-	let db = findfile("cscope.out", ".;")
-	if (!empty(db))
-		let path = strpart(db, 0, match(db, "/cscope.out$"))
-		set nocscopeverbose " suppress 'duplicate connection' error
-		exe "cs add " . db . " " . path
-		set cscopeverbose
-	endif
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+    endif
 endfunction
 au BufEnter /* call LoadCscope()
 
@@ -331,4 +331,8 @@ let g:ale_python_pylint_options= "--disable C0301"
 let g:ale_python_flake8_args = "--max-line-length=999"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" AirlineTheme solarized
+let g:airline_solarized_bg='dark'
+let g:airline_theme='solarized'
 
