@@ -305,6 +305,11 @@ let g:ctrlp_working_path_mode=''
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_user_command = ['cscope.files', 'cat %s/cscope.files']
 
+" fzf (alternatively to ctrl-p)
+nmap <leader>t :Files<CR>
+nmap <leader>r :Tags<CR>
+nmap ; :Buffers<CR>
+
 " Persistent undo
 set undofile
 
