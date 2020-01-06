@@ -333,7 +333,7 @@ au BufEnter /* call LoadCscope()
 
 " Ignore line length in python files
 let g:ale_python_pylint_options= "--disable C0301"
-let g:ale_python_flake8_args = "--max-line-length=999"
+let g:ale_python_flake8_options= "--max-line-length=999 --ignore=E722"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
