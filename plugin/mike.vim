@@ -337,6 +337,14 @@ let g:ale_python_flake8_options= "--max-line-length=999 --ignore=E722"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" Don't go crazy with the location list in vim-go
+"let g:go_fmt_fail_silently = 1
+" goimports includes gofmt as well as importing
+let g:go_fmt_command = "goimports"
+" Always use quickfix
+let g:go_list_type = "quickfix"
+let g:go_list_height = 10
+
 " AirlineTheme solarized
 let g:airline_solarized_bg='dark'
 let g:airline_theme='solarized'
