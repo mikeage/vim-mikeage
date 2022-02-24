@@ -104,30 +104,6 @@ endif
 " Always show a statusbar
 set laststatus=2
 
-" Statusline
-"set statusline=%t       "tail of the filename
-"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-"set statusline+=%{&ff}] "file format
-"set statusline+=%h      "help file flag
-"set statusline+=%m      "modified flag
-"set statusline+=%r      "read only flag
-"set statusline+=%y      "filetype
-"set statusline+=%q      "quickfix / locationlist
-""set statusline+=%{cfi#get_func_name()} "function name (uses the current-func-info plugin)
-"set statusline+=\ %{exists('g:loaded_StlShowFunc')?StlShowFunc():''} "function name (uses the current-func-info plugin)
-""Don't use this, since it shows the previous function if we're between functions. StlShowFunc gets it right.
-""set statusline+=\ %{tagbar#currenttag('[%s]\ ','')}
-"set statusline+=%=      "left/right separator
-"set statusline+=\ %{exists('g:loaded_Timestamp')?TimestampGetDelta():''} "Delta
-"set statusline+=\ %{exists('g:loaded_fugitive')?fugitive#statusline():''} " Current git branch
-"set statusline+=%c:%v,  "cursor column:virtual column
-"set statusline+=%l/%L   "cursor line/total lines
-"set statusline+=\ %P    "percent through file
-
-" Don't overwrite our statusline with StlShowFunc's
-let stlshowfunc_stlnofunc=&statusline
-let stlshowfunc_stlfunc=&statusline
-
 " Tabs are shown as a 4 space indent
 set tabstop=4
 " Automatic indent uses 4 spaces
@@ -155,17 +131,8 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 " Show where spaces and tabs are mixed
 let g:c_space_errors = 1
 
-" Don't prompt for comments in ClearCase
-let g:ccaseNoComment = 1
-
 " Missed sudos
 cmap w!! %!sudo tee > /dev/null %
-
-" Pretty Print
-map <f9> :%!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs<CR>
-
-" Pretty print the visual highlight
-map <leader><f9> :!indent --blank-before-sizeof --blank-lines-after-commas --blank-lines-after-declarations --blank-lines-after-procedures --brace-indent0 --braces-after-func-def-line --braces-after-func-def-line --braces-after-if-line --braces-after-struct-decl-line --case-brace-indentation0 --case-indentation8 --cuddle-do-while --declaration-indentation16 --dont-break-function-decl-args --dont-break-function-decl-args-end --dont-break-procedure-type --dont-cuddle-else --indent-level8 -l999 --no-space-after-parentheses --space-after-for --space-after-while --space-special-semicolon --space-after-if --swallow-optional-blank-lines --use-tabs<CR>
 
 " Lookup the current highlight
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
@@ -239,9 +206,6 @@ nnoremap <silent><space> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 " Search shouldn't open a fold
 set foldopen-=search
 
-" For eclipsed files, we can't delete the original and rename, b/c it will undo the eclipse
-set backupcopy=yes
-
 " Switch to the current directory automatically
 "set autochdir
 
@@ -258,25 +222,6 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeWinSize=60
 " Load NERDTree if no files were specified
 " autocmd vimenter * if !argc() | NERDTree | endif
-
-" Tagbar instead of taglist, which is horribly out of date
-:imap <F8> :TagbarToggle<CR>
-:map <F8> :TagbarToggle<CR>
-" Open on the left side (like source insight)
-let g:tagbar_left = 1
-" Save some screen
-let g:tagbar_compact = 1
-
-" Ignore Fusion build warnings
-set errorformat^=%-G%.%#library.mk.%#
-set errorformat^=%-G%.%#libraries.mk%.%#
-set errorformat^=%-G%.%#platform.mk%.%#
-
-" Errorformat for KW files [modified by awk -F";" 'BEGIN {OFS=";";} {print $5,$2,$3,$7 " " $18 " (" $8 ") " $12}' ]
-set errorformat+=%IStyle;%f;%l;%c;%m,%WWarning;%f;%l;%c;%m,%EError;%f;%l;%c;%m,%ECritical;%f;%l;%c;%m,%ESevere;%f;%l;%c;%m,%IInvestigate;%f;%l%c;%m
-
-" Errorformat for MSL Python Unit Tests; ignore all lines starting with \.*NDS
-set errorformat^=%-G.%#NDS%.%#
 
 " Ignore the special marks; only show the user defined local (a-z) and global (A-Z) marks
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
