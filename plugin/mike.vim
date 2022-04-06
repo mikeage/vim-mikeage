@@ -294,6 +294,8 @@ let g:go_list_height = 10
 let g:airline_solarized_bg='dark'
 let g:airline_theme='solarized'
 
+let g:terraform_fmt_on_save=1
+
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
