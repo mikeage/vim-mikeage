@@ -278,7 +278,7 @@ au BufEnter /* call LoadCscope()
 
 " Ignore line length in python files
 let g:ale_python_pylint_options= "--disable C0301"
-let g:ale_python_flake8_options= "--max-line-length=999 --ignore=E722"
+let g:ale_python_flake8_options= "--max-line-length=999 --ignore=E722,F401"
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -301,4 +301,12 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
 
-
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'plugins': {'pycodestyle': {'enabled': v:false}, 'pyflakes': {'enabled': v:false}, 'flake8': {'enabled': v:false}},
+\       }
+\     }
+\   },
+\}
