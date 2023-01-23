@@ -87,7 +87,7 @@ if has("gui_running")
     set background=dark
 else
     " Best mouse tracking
-    set ttymouse=xterm2
+"    set ttymouse=xterm2
     " Use the mouse in (a)ll modes
     set mouse=a
     if &t_Co == 256
