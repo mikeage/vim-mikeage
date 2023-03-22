@@ -1,5 +1,8 @@
 " Custom settings, the way I like things...
 
+" For alacritty
+set termguicolors
+
 " Folding should always be done logically
 set foldmethod=syntax
 " Allow up to 8 columns to indicate folds
@@ -63,44 +66,12 @@ if has("autocmd")
 else
     set autoindent " always set autoindenting on
 endif " has("autocmd")
-"
-" I might move to solarized (http://ethanschoonover.com/solarized/vim-colors-solarized) soon. Until then, since I haven't changed PuTTY colors (and neither has anyone else), we'll set the override that uses estimates.
-if ((! has("gui_win32")) && &t_Co == 256)
-    if (!exists("$SOLARIZED"))
-        let g:solarized_termcolors=256
-    endif
-endif
-let g:solarized_contrast = "high"
 
+set background=dark
+colorscheme solarized8
+highlight Comment cterm=italic gui=italic
+set mouse=a
 
-" Display options
-" Options that depend on the UI (win32, gtk, console)
-if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Lucida\ Typewriter\ 11
-    elseif has("gui_win32")
-        set guifont=Consolas:h9
-        " Fullscreen in windows
-        au GUIEnter * simalt ~x
-    endif
-    colorscheme solarized
-    set background=dark
-else
-    " Best mouse tracking
-"    set ttymouse=xterm2
-    " Use the mouse in (a)ll modes
-    set mouse=a
-    if &t_Co == 256
-        if (exists("$SOLARIZED"))
-            colorscheme solarized
-            set background=dark
-        else
-            colorscheme delek2
-        endif
-    else
-        colorscheme delek
-    endif
-endif
 " Always show a statusbar
 set laststatus=2
 
