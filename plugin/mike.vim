@@ -281,3 +281,8 @@ let g:lsp_settings = {
 \     }
 \   },
 \}
+
+" In alacritty, the ttymouse mode is not correctly detected
+if $TERM == 'alacritty'
+	set ttymouse=sgr
+endif
